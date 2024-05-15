@@ -2,7 +2,7 @@ import React from 'react'
 
 const UserMagang = () => {
   return (
-    <div>User Magang Pages</div>
+    <div className='bg bg-gray-200 h-screen'>User Magang Pages</div>
   )
 }
 
