@@ -7,8 +7,8 @@ const Path = () => {
     <Router>
         <Routes>
             <Route path='/' element={<Dashboard/>}/>
-            <Route path='/magang' element={<UserMagang/>}/>
-            <Route path='/admin' element={<UserAdmin/>}/>
+            <Route path='/Magang' element={<UserMagang/>}/>
+            <Route path='/Monitoring' element={<UserAdmin/>}/>
         </Routes>
     </Router>
   )
