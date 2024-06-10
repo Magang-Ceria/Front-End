@@ -2,7 +2,7 @@ import React from 'react';
 
 const Sidebar = ({ setActiveComponent }) => {
   return (
-    <div className="bg-gray-100 h-screen w-64 p-4 rounded-lg">
+    <div className="bg-white h-screen w-64 p-4 rounded-lg">
       <div className="text-left">
         <h2 className="text-red-500 font-semibold mb-4">UMUM</h2>
         <ul className="mb-8">
@@ -40,29 +40,19 @@ const Sidebar = ({ setActiveComponent }) => {
               >
                 <span className="mr-2">📊</span> Laporan Aktivitas
             </button>
-          </li>
-          <li>
-          <button
-                onClick={() => setActiveComponent('StatistikKehadiran')}
-                className='flex items-center text-red-500 p-2 rounded-md w-full text-left'
-              >
-                <span className="mr-2">📅</span> Statistik Kehadiran
-            </button>
-          </li>
+          </li>          
         </ul>
         
         <h2 className="text-red-500 font-semibold mb-4">BROADCAST PESAN</h2>
         <ul>
           <li className="mb-2">
-            <a href="#" className="flex items-center text-black p-2 rounded-md">
-              <span className="mr-2">✈️</span> Kirim Broadcast
-            </a>
-          </li>
-          <li>
-            <a href="#" className="flex items-center text-black p-2 rounded-md">
-              <span className="mr-2">⏱️</span> Riwayat Broadcast
-            </a>
-          </li>
+            <button
+                onClick={() => setActiveComponent('KirimBroadcast')}
+                className='flex items-center text-red-500 p-2 rounded-md w-full text-left'
+                >
+                <span className="mr-2">✈️</span> Kirim Broadcast
+            </button>            
+          </li>             
         </ul>
       </div>
     </div>

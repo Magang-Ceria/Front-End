@@ -1,11 +1,7 @@
 
-import React, { useState } from 'react';
+import React, { useState } from 'react'; 
 import Sidebar from '../../components/monitoringSidebar/monitoringSidebar';
-import Dashboard from '../../components/monitoringSidebar/dashboard';
-import Pesan from '../../components/monitoringSidebar/pesan';
-import Kelola from '../../components/monitoringSidebar/kelola';
-import Laporan from '../../components/monitoringSidebar/laporan';
-import Statistik from '../../components/monitoringSidebar/statistik.js';
+import {DashboardAdmin, KelompokAdmin, BroadcastAdmin, AktivitasAdmin, PesanAdmin, RiwayatBroadcast, Statistik} from './pages-admin'
 
 const UserAdmin = () => {
   const [activeComponent, setActiveComponent] = useState('Dashboard');
@@ -13,26 +9,32 @@ const UserAdmin = () => {
   const renderComponent = () => {
     switch (activeComponent) {
       case 'Dashboard':
-        return <Dashboard />;
+        return <DashboardAdmin />;
       case 'Messages':
-        return <Pesan/>; 
+        return <PesanAdmin/>; 
       case 'KelolaPeserta':
-        return <Kelola/>; 
+        return <KelompokAdmin/>; 
       case 'LaporanAktivitas':
-        return <Laporan/>;
+        return <AktivitasAdmin/>;  
       case 'StatistikKehadiran':
         return <Statistik/>;
-      
+      case 'KirimBroadcast':
+        return <BroadcastAdmin/>;
+      case 'RiwayatBroadcast':
+        return <RiwayatBroadcast/>;
+
       default:
-        return <Dashboard />;
+        return <DashboardAdmin />;
     }
   };
 
   return (
-    <div className="App-flex flex ml-10">
-      <Sidebar setActiveComponent={setActiveComponent} />
-      <div className="flex-1 p-10">
-        {renderComponent()}
+    <div className='bg-gray-100'>
+      <div className="flex gap-5 mx-10 py-5">
+        <Sidebar setActiveComponent={setActiveComponent} />
+        <div className='w-5/6'>
+            {renderComponent()}
+        </div>
       </div>
     </div>
   );

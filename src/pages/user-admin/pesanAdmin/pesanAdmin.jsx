@@ -15,7 +15,7 @@ const messages = [
   }
 ];
 
-const PesanMasuk = () => {
+const pesanAdmin = () => {
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       <div className="bg-white p-4 rounded shadow">
@@ -44,4 +44,4 @@ const PesanMasuk = () => {
   );
 };
 
-export default PesanMasuk;
+export default pesanAdmin;
