@@ -8,12 +8,6 @@ const Header = () => {
             <img src={logo} alt="header image" />
         </div>
         <div className='mt-1 w-full border-t border-black'>
-            <div className='hidden md:flex md:gap-10 mt-1'>
-            <p className='md:ml-3 hover:font-semibold'><a href="#">Beranda</a></p>
-            <p className='hover:font-semibold'><a href="#">Magang</a></p>
-            <p className='hover:font-semibold'><a href="#">Profil</a></p>
-            <p className='hover:font-semibold'><a href="#">Kontak</a></p>
-            </div>
         </div>
     </div>
   )

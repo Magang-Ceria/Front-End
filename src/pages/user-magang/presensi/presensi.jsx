@@ -5,7 +5,7 @@ import {faBars } from '@fortawesome/free-solid-svg-icons'
 const presensiMagang = () => {
   return (
     <div>
-    <div className='flex gap-2'>
+    <div className='hidden md:flex gap-2'>
       <div className="text-red-500 bg-white rounded py-1 px-2 flex-none">
         <FontAwesomeIcon icon={faBars} />
       </div>

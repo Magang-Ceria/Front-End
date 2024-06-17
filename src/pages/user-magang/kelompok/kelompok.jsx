@@ -86,14 +86,9 @@ const Kelompok = () => {
     ],
     [],
   );
-
-  const table = useMaterialReactTable({
-    columns,
-    data, //data must be memoized or stable (useState, useMemo, defined outside of this component, etc.)
-  });
   return (
     <div>
-    <div className='flex gap-2'>
+    <div className='hidden md:flex gap-2'>
       <div className="text-red-500 bg-white rounded py-1 px-2 flex-none">
         <FontAwesomeIcon icon={faBars} />
       </div>
@@ -102,7 +97,7 @@ const Kelompok = () => {
       </div>
     </div>
     <div className='mt-3'>
-      <MaterialReactTable table={table} />
+      
     </div>
   </div>
   )
