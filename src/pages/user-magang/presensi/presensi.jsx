@@ -14,7 +14,7 @@ const presensiMagang = () => {
       </div>
     </div>
     <div className='mt-3'>
-
+      
     </div>
   </div>
   )
