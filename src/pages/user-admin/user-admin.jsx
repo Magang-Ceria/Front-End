@@ -1,11 +1,12 @@
 
 import React, { useState } from 'react';
-import Sidebar from '../../components/monitoringSidebar/monitoringSidebar';
-import Dashboard from '../../components/monitoringSidebar/dashboard';
-import Pesan from '../../components/monitoringSidebar/pesan';
-import Kelola from '../../components/monitoringSidebar/kelola';
-import Laporan from '../../components/monitoringSidebar/laporan';
-import Statistik from '../../components/monitoringSidebar/statistik.js';
+import Sidebar from '../../components/admin/monitoringSidebar.js';
+import Dashboard from '../../components/admin/dashboard.js';
+import Pesan from '../../components/admin/pesan.js';
+import Kelola from '../../components/admin/kelola.js';
+import Laporan from '../../components/admin/laporan.js';
+import Statistik from '../../components/admin/statistik.js';
+import Kirim from '../../components/admin/kirim.js';
 
 const UserAdmin = () => {
   const [activeComponent, setActiveComponent] = useState('Dashboard');
@@ -22,6 +23,8 @@ const UserAdmin = () => {
         return <Laporan/>;
       case 'StatistikKehadiran':
         return <Statistik/>;
+      case 'KirimBroadcast':
+        return <Kirim/>;
       
       default:
         return <Dashboard />;
@@ -29,9 +32,9 @@ const UserAdmin = () => {
   };
 
   return (
-    <div className="App-flex flex ml-10">
+    <div className="App-flex flex ml-10 mt-5 ">
       <Sidebar setActiveComponent={setActiveComponent} />
-      <div className="flex-1 p-10">
+      <div className="flex-1 p-10 2 ">
         {renderComponent()}
       </div>
     </div>
