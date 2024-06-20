@@ -6,7 +6,7 @@
   <p align="center">
     Website Project Internship at Diskominfo Semarang
     <br />
-    <a href="#"><strong>Website Preview Coming Soon »</strong></a>
+    <a href="https://magang-diskominfo-test.vercel.app/"><strong>Website Preview »</strong></a>
     <br />
     <br />
   </p>

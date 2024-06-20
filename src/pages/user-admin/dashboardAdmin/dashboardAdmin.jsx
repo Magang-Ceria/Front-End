@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faClipboardCheck, faFileAlt, faDownload, faBars } from '@fortawesome/free-solid-svg-icons';
 
-const Dashboard = () => {
+const dashboardAdmin = () => {
   return (
     <div className="flex flex-col p-5 space-y-5 w-full">
       <div className="flex justify-between items-center">
@@ -13,7 +13,7 @@ const Dashboard = () => {
         <div className="text-2xl font-bold">Selamat Datang, Admin</div>
       </div>
 
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid grid-cols-3 gap-5"> 
         <div className="bg-white shadow-md rounded-lg p-5 text-center">
           <FontAwesomeIcon icon={faUser} className="text-3xl mb-3" />
           <div className="text-3xl font-bold">300</div>
@@ -113,4 +113,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default dashboardAdmin;
