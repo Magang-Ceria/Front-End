@@ -101,7 +101,7 @@ const Sidebar = ({ setActiveComponent }) => {
         </div>
 
         {isVisible && (
-          <nav className="bg-white rounded-md p-2 flex-row fixed mt-2 shadow-md">
+          <nav className="bg-white rounded-md p-2 flex-row fixed mt-2 shadow-md z-50">
             <div>
               <a onClick={() => handleSetActiveComponent('Dashboard')}>🏠 Beranda</a>
             </div>
