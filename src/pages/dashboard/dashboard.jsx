@@ -3,6 +3,7 @@ import logo from '../../assets/images/header.png'
 import banner from '../../assets/images/home1.png'
 import { render } from '@testing-library/react'
 import logo2 from '../../assets/icons/plus.png'
+import Footer from '../../components/footer/footer';
 
 const Dashobard = () => {
   return (
@@ -171,6 +172,9 @@ const Dashobard = () => {
           <span className='flex-grow text-center'>Mengapa saya tidak mendapatkan email verifikasi?</span>
           <img className='w-6 h-6 ml-auto' src={logo2} alt='read more' />
         </button>
+      </div>
+      <div>
+            <Footer />
       </div>
     </div>
   )
