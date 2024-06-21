@@ -3,6 +3,7 @@ import logo from '../../assets/images/header.png'
 import banner from '../../assets/images/home1.png'
 import { render } from '@testing-library/react'
 import logo2 from '../../assets/icons/plus.png'
+import Footer from '../../components/footer/footer';
 
 const Dashobard = () => {
   return (
@@ -122,31 +123,31 @@ const Dashobard = () => {
           <p class="mb-16 font-semibold text-2xl text-black lg:text-xl sm:px-16 xl:px-48">Diskominfo Kota Semarang</p>
         </div>
       </div>
-      <div>
+      <div className='container mx-auto pt-5'>
         <div class="flex flex-row gap-4 md:gap-10 lg:gap-10 p-9 ml-28 mr-28 items-center justify-center pb-5">
           <div class="flex flex-col items-center">
             <div class="w-20 h-20 bg-red-500 shadow-xl rounded-full flex justify-center items-center">
               <span class="text-white font-bold text-2xl">1</span>
             </div>
-            <span class="mt-5 text-gray-700 text-center">Pengembangan Hardskill dan Softskill</span>
+            <span class="mt-5 text-gray-700 text-center">Siapkan surat rekomendasi dari kampus / sekolah</span>
           </div>
           <div class="flex flex-col items-center">
             <div class="w-20 h-20 bg-red-500 shadow-xl rounded-full flex justify-center items-center">
               <span class="text-white font-bold text-2xl">2</span>
             </div>
-            <span class="mt-5 text-gray-700 text-center">Pengenalan budaya dan  akhlak di Diskominfo</span>
+            <span class="mt-5 text-gray-700 text-center">Bertemu Pak hanry di lantai 3 kantor diskominfo</span>
           </div>
           <div class="flex flex-col items-center">
             <div class="w-20 h-20 bg-red-500 shadow-xl rounded-full flex justify-center items-center">
               <span class="text-white font-bold text-2xl">3</span>
             </div>
-            <span class="mt-5 text-gray-700 text-center">Sertifikat Magang</span>
+            <span class="mt-5 text-gray-700 text-center">Anda akan diarahkan ke dosen pembimbing untuk tugasnya</span>
           </div>
           <div class="flex flex-col items-center">
             <div class="w-20 h-20 bg-red-500 shadow-xl rounded-full flex justify-center items-center">
               <span class="text-white font-bold text-2xl">4</span>
             </div>
-            <span class="mt-5 text-gray-700 text-center">wes pokoke full senyum </span>
+            <span class="mt-5 text-gray-700 text-center">Anda akan mendapatkan  Surat kesediaan mitra</span>
           </div>
         </div>
       </div>
@@ -154,20 +155,30 @@ const Dashobard = () => {
       <div class="text-center mt-20">
         <p class="mb-9 font-semibold text-2xl text-black lg:text-xl sm:px-16 xl:px-48">Pertanyaan yang paling sering ditanyakan</p>
       </div>
+      <div className='container font-light mx-auto mb-10 border-spacing-2 flex flex-col gap-4 text-center'>
+        <button className='bg-slate-100 p-4 rounded-md shadow-xl flex items-center w-full'>
+          <span className='flex-grow text-center'>Mengapa saya tidak mendapatkan email verifikasi?</span>
+          <img className='w-6 h-6 ml-auto' src={logo2} alt='read more' />
+        </button>
+        <button className='bg-slate-100 p-4 rounded-md shadow-xl flex items-center w-full'>
+          <span className='flex-grow text-center'>Mengapa saya tidak mendapatkan email verifikasi?</span>
+          <img className='w-6 h-6 ml-auto' src={logo2} alt='read more' />
+        </button>
+        <button className='bg-slate-100 p-4 rounded-md shadow-xl flex items-center w-full'>
+          <span className='flex-grow text-center'>Mengapa saya tidak mendapatkan email verifikasi?</span>
+          <img className='w-6 h-6 ml-auto' src={logo2} alt='read more' />
+        </button>
+        <button className='bg-slate-100 p-4 rounded-md shadow-xl flex items-center w-full'>
+          <span className='flex-grow text-center'>Mengapa saya tidak mendapatkan email verifikasi?</span>
+          <img className='w-6 h-6 ml-auto' src={logo2} alt='read more' />
+        </button>
+      </div>
       <div>
-        <div className='container font-light mx-auto mb-10 border-spacing-2 flex flex-col gap-4 text-center'>
-          <button className='bg-slate-100 p-4 rounded-md shadow-xl' >Mengapa saya tidak mendapatkan email verifikasi?
-          <img className='w-6 h-6 justify-end' src={logo2} alt='read more' />
-          </button>
-          <button className='bg-slate-100 p-4 rounded-md shadow-xl' >Mengapa saya tidak mendapatkan email verifikasi?</button>
-          <button className='bg-slate-100 p-4 rounded-md shadow-xl' >Mengapa saya tidak mendapatkan email verifikasi?</button>
-          <button className='bg-slate-100 p-4 rounded-md shadow-xl' >Mengapa saya tidak mendapatkan email verifikasi?</button>
-        </div>
+            <Footer />
       </div>
     </div>
   )
 }
-
 
 
 export default Dashobard
