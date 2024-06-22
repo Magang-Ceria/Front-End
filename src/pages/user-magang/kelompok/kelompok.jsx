@@ -88,11 +88,11 @@ const Kelompok = () => {
 
   return (
     <div>
-      <div className="hidden md:flex gap-2">
+      <div className='hidden md:flex gap-2'>
         <div className="text-red-500 bg-white rounded py-1 px-2 flex-none">
           <FontAwesomeIcon icon={faBars} />
         </div>
-        <div className="pl-2 py-1 bg-white rounded flex-auto">
+        <div className='pl-2 py-1 bg-white rounded flex-auto'>
           <h5>/ Magang / Kelompok</h5>
         </div>
       </div>
