@@ -1,137 +1,120 @@
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faBars } from '@fortawesome/free-solid-svg-icons'
-import { useMemo } from 'react';
-import {
-  MaterialReactTable,
-  useMaterialReactTable,
-} from 'material-react-table';
+import React, { useState } from 'react';
+import AssignmentForm from './assignmentForm';
 
-const data = [
-  {
-    name: {
-      firstName: 'John',
-      lastName: 'Doe',
-    },
-    address: '261 Erdman Ford',
-    city: 'East Daphne',
-    state: 'Kentucky',
-  },
-  {
-    name: {
-      firstName: 'Jane',
-      lastName: 'Doe',
-    },
-    address: '769 Dominic Grove',
-    city: 'Columbus',
-    state: 'Ohio',
-  },
-  {
-    name: {
-      firstName: 'Joe',
-      lastName: 'Doe',
-    },
-    address: '566 Brakus Inlet',
-    city: 'South Linda',
-    state: 'West Virginia',
-  },
-  {
-    name: {
-      firstName: 'Kevin',
-      lastName: 'Vandy',
-    },
-    address: '722 Emie Stream',
-    city: 'Lincoln',
-    state: 'Nebraska',
-  },
-  {
-    name: {
-      firstName: 'Joshua',
-      lastName: 'Rolluffs',
-    },
-    address: '32188 Larkin Turnpike',
-    city: 'Charleston',
-    state: 'South Carolina',
-  },
+const tasks = [
+  { status: 'Completed', code: 'T11111', assignment: 'Review Website', deadline: '16 Juli 2024' },
+  { status: 'Process', code: 'T11112', assignment: 'Pembuatan Video', deadline: '16 Juli 2024' },
+  { status: 'Scheduled', code: 'T11113', assignment: 'Pembuatan laporan', deadline: '16 Juli 2024' },
+  { status: 'Completed', code: 'T11114', assignment: 'Monitoring Website', deadline: '16 Juli 2024' },
+  { status: 'Process', code: 'T11115', assignment: 'Pembuatan Konten', deadline: '16 Juli 2024' },
+  { status: 'Scheduled', code: 'T11116', assignment: 'Mengisi Survei', deadline: '16 Juli 2024' },
 ];
 
-const LaporanAktivitas = () => {
-    const columns = useMemo(
-        () => [
-          {
-            id: 'select',
-            header: ({ table }) => (
-              <input
-                type="checkbox"
-                checked={table.getIsAllPageRowsSelected()}
-                onChange={table.getToggleAllPageRowsSelectedHandler()}
-              />
-            ),
-            cell: ({ row }) => (
-              <input
-                type="checkbox"
-                checked={row.getIsSelected()}
-                onChange={row.getToggleSelectedHandler()}
-              />
-            ),
-            size: 40,
-          },
-          {
-            accessorKey: 'name.firstName', //access nested data with dot notation
-            header: 'First Name',
-            size: 150,
-          },
-          {
-            accessorKey: 'name.lastName',
-            header: 'Last Name',
-            size: 150,
-          },
-          {
-            accessorKey: 'address', //normal accessorKey
-            header: 'Address',
-            size: 200,
-          },
-          {
-            accessorKey: 'city',
-            header: 'City',
-            size: 150,
-          },
-          {
-            accessorKey: 'state',
-            header: 'State',
-            size: 150,
-          },
-        ],
-        [],
-      );
-    
-      const table = useMaterialReactTable({
-        columns,
-        data, //data must be memoized or stable (useState, useMemo, defined outside of this component, etc.)
-        enableRowSelection: true, // enable row selection
-      });
-    
-      return (
-        <div>
-          <div className='flex gap-2'>
-            <div className="text-red-500 bg-white rounded py-1 px-2 flex-none">
-              <FontAwesomeIcon icon={faBars} />
-            </div>
-            <div className='pl-2 py-1 bg-white rounded flex-auto'>
-              <h5>/ Magang / Kelompok</h5>
-            </div>
-          </div>
-          <div className='mt-3'>
-            {/* Button Add */}
-            {/* <div className="flex justify-between mb-4">
-              <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
-                Tambah Data
-              </button>
-            </div> */}
-            <MaterialReactTable table={table} />
-          </div>
-        </div>
-      );
-    }
+const statusColors = {
+  Completed: 'bg-green-500',
+  Process: 'bg-orange-500',
+  Scheduled: 'bg-blue-500',
+};
 
-export default LaporanAktivitas
+const ActivityReport = () => {
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleOpenForm = () => {
+    setIsFormOpen(true);
+  };
+
+  const handleCloseForm = () => {
+    setIsFormOpen(false);
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredTasks = tasks.filter(task => 
+    task.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    task.assignment.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <div className="p-6">
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-2xl font-bold">Aktivitas Penugasan Kelompok</h1>
+        <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={handleOpenForm}>
+          + Tambah Penugasan
+        </button>
+      </div>
+      <input
+        type="text"
+        placeholder="Cari Penugasan"
+        className="mb-4 p-2 border rounded-full w-100"
+        value={searchTerm}
+        onChange={handleSearchChange}
+      />
+      <table className="min-w-full bg-white">
+        <thead>
+          <tr className="border-b">
+            <th className="py-2 text-center">Status</th>
+            <th className="py-2 text-left">Kode Tugas</th>
+            <th className="py-2 text-left">Penugasan</th>
+            <th className="py-2 text-left">Deadline</th>
+            <th className="py-2 text-left">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredTasks.map((task, index) => (
+            <tr key={index} className="border-b">
+              <td className="py-2">
+                <span className={`text-white px-2 py-1 rounded-full ml-10 ${statusColors[task.status]}`}>
+                  {task.status}
+                </span>
+              </td>
+              <td className="py-2">{task.code}</td>
+              <td className="py-2">{task.assignment}</td>
+              <td className="py-2">{task.deadline}</td>
+              <td className="py-2 flex space-x-2">
+                <button className="text-green-500 hover:text-green-700">
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    onClick={handleOpenForm}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15.232 5.232l3.536 3.536m-2.036-1.5a2.121 2.121 0 113 3L12.025 21H8v-4.025l9.732-9.732z"
+                    />
+                  </svg>
+                </button>
+                <button className="text-red-500 hover:text-red-700">
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {isFormOpen && <AssignmentForm onClose={handleCloseForm} />}
+    </div>
+  );
+};
+
+export default ActivityReport;

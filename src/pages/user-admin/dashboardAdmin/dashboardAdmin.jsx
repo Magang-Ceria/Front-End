@@ -2,7 +2,20 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faClipboardCheck, faFileAlt, faDownload, faBars } from '@fortawesome/free-solid-svg-icons';
 
-const dashboardAdmin = () => {
+const participants = [
+  { name: 'Peserta Magang 1', university: 'Universitas Indonesia', morningStatus: 'Absent', morningFile: null, afternoonStatus: 'Absent', afternoonFile: null },
+  { name: 'Peserta Magang 2', university: 'Universitas Negeri Semarang', morningStatus: 'Terlambat', morningFile: true, afternoonStatus: 'Terlambat', afternoonFile: true },
+  { name: 'Peserta Magang 3', university: 'Universitas Diponegoro', morningStatus: 'Izin', morningFile: true, afternoonStatus: 'Izin', afternoonFile: true },
+  { name: 'Peserta Magang 4', university: 'Universitas Diponegoro', morningStatus: 'Izin', morningFile: true, afternoonStatus: 'Izin', afternoonFile: true },
+];
+
+const statusColors = {
+  Absent: 'bg-red-500 text-white',
+  Terlambat: 'bg-orange-500 text-white',
+  Izin: 'bg-yellow-500 text-black',
+};
+
+const DashboardAdmin = () => {
   return (
     <div className="flex flex-col p-5 space-y-5 w-full">
       <div className="flex justify-between items-center">
@@ -37,75 +50,44 @@ const dashboardAdmin = () => {
           <thead>
             <tr>
               <th>Nama</th>
-              <th>Status</th>
-              <th>File Pendukung</th>
+              <th>Morning</th>
+              <th>Afternoon</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                <div className="flex items-center">
-                  <FontAwesomeIcon icon={faUser} className="text-2xl mr-3" />
-                  <div>
-                    <div className="font-bold">Peserta Magang 1</div>
-                    <div className="text-sm text-gray-500">Universitas Indonesia</div>
+            {participants.map((participant, index) => (
+              <tr key={index}>
+                <td>
+                  <div className="flex items-center mt-3">
+                    <FontAwesomeIcon icon={faUser} className="text-2xl mr-3" />
+                    <div>
+                      <div className="font-bold">{participant.name}</div>
+                      <div className="text-sm text-gray-500">{participant.university}</div>
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td>
-                <span className="text-red-500">Absent</span>
-              </td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td>
-                <div className="flex items-center">
-                  <FontAwesomeIcon icon={faUser} className="text-2xl mr-3" />
-                  <div>
-                    <div className="font-bold">Peserta Magang 2</div>
-                    <div className="text-sm text-gray-500">Universitas Negeri Semarang</div>
+                </td>
+                <td>
+                  <div className="flex items-center space-x-2">
+                    <span className={`px-2 py-1 rounded-full ${statusColors[participant.morningStatus]}`}>
+                      {participant.morningStatus}
+                    </span>
+                    {participant.morningFile && (
+                      <FontAwesomeIcon icon={faDownload} className="text-blue-500 cursor-pointer" />
+                    )}
                   </div>
-                </div>
-              </td>
-              <td>
-                <span className="text-yellow-500">Terlambat</span>
-              </td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td>
-                <div className="flex items-center">
-                  <FontAwesomeIcon icon={faUser} className="text-2xl mr-3" />
-                  <div>
-                    <div className="font-bold">Peserta Magang 2</div>
-                    <div className="text-sm text-gray-500">Universitas Diponegoro</div>
+                </td>
+                <td>
+                  <div className="flex items-center space-x-2">
+                    <span className={`px-2 py-1 rounded-full ${statusColors[participant.afternoonStatus]}`}>
+                      {participant.afternoonStatus}
+                    </span>
+                    {participant.afternoonFile && (
+                      <FontAwesomeIcon icon={faDownload} className="text-blue-500 cursor-pointer" />
+                    )}
                   </div>
-                </div>
-              </td>
-              <td>
-                <span className="text-yellow-500">Izin</span>
-              </td>
-              <td>
-                <FontAwesomeIcon icon={faDownload} className="text-blue-500 cursor-pointer" />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div className="flex items-center">
-                  <FontAwesomeIcon icon={faUser} className="text-2xl mr-3" />
-                  <div>
-                    <div className="font-bold">Peserta Magang 2</div>
-                    <div className="text-sm text-gray-500">Universitas Diponegoro</div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <span className="text-yellow-500">Izin</span>
-              </td>
-              <td>
-                <FontAwesomeIcon icon={faDownload} className="text-blue-500 cursor-pointer" />
-              </td>
-            </tr>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
@@ -113,4 +95,4 @@ const dashboardAdmin = () => {
   );
 };
 
-export default dashboardAdmin;
+export default DashboardAdmin;

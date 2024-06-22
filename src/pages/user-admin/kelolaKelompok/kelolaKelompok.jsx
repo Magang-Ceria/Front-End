@@ -1,76 +1,117 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import PopUp from './popup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faUserPlus, faUserMinus, faUserCheck, faUsers, } from '@fortawesome/free-solid-svg-icons';
-
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 const KelolaKelompok = () => {
+  const [activeTab, setActiveTab] = useState('Pendaftar');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedParticipant, setSelectedParticipant] = useState(null);
 
-  // Data Dummy
-  const actions = [
-    "Tambah Kelompok A",
-    "Hapus Kelompok C",
-    "Edit Peserta B",
-    ".....",
-    ".....",
-    ".....",
-    ".....",
-    ".....",
-    ".....",
-    "....."
-];
+  const pendaftar = Array(6).fill({
+    name: "Kelompok 1",
+    startDate: "16 Februari 2024",
+    endDate: "16 Juli 2024"
+  });
+
+  const pesertaAktif = Array(6).fill({
+    name: "Kelompok Magang 1",
+    startDate: "16 Februari 2024",
+    endDate: "16 Juli 2024"
+  });
 
   return (
-    <div>
-      <div className='flex gap-2'>
-        <div className="text-red-500 bg-white rounded py-1 px-2 flex-none">
-          <FontAwesomeIcon icon={faBars} />
-        </div>
-        <div className='pl-2 py-1 bg-white rounded flex-auto'>
-          <h5>/ Magang / Kelola Kelompok</h5>
-        </div>
+    <div className="p-5">
+      <div className="flex items-center space-x-2 mb-8">
+        <FontAwesomeIcon icon={faBars} className="text-red-500" />
+        <span>/ Monitoring / Dashboard</span>
       </div>
+      <div className="bg-gray-200 p-4 rounded-lg">
+        <div className="flex justify-between items-center mb-4"></div>
 
-      <div className='mt-5'>        
-        <div className='flex gap-3 mb-4'>
-          <div className=' flex-1 p-3 bg-white shadow-md rounded-lg text-center'>
-            <FontAwesomeIcon icon={faUserPlus} className="text-3xl mb-1" />
-            <div className="text-3xl font-bold">300</div>
-            <div>Peserta Masuk</div>
+        <div className="flex justify-between mb-2">
+          <div className="relative flex w-1/4 mb-4 bg-gray-300 rounded p-1">
+            <motion.div
+              layout
+              initial={{ borderRadius: 9999 }}
+              animate={{ x: activeTab === 'Peserta Aktif' ? '100%' : 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="absolute top-0 left-0 w-1/2 h-full bg-blue-500 rounded"
+            />
+            <button
+              className={`relative flex-1 text-center p-2 rounded ${activeTab === 'Pendaftar' ? 'text-white' : 'text-black'}`}
+              onClick={() => setActiveTab('Pendaftar')}
+            >
+              Pendaftar
+            </button>
+            <button
+              className={`relative  flex-1 text-center p-2 rounded ${activeTab === 'Peserta Aktif' ? 'text-white' : 'text-black'}`}
+              onClick={() => setActiveTab('Peserta Aktif')}
+            >
+              Peserta Aktif
+            </button>
           </div>
-          <div className='flex-1 p-3 bg-white shadow-md rounded-lg text-center'>
-            <FontAwesomeIcon icon={faUserMinus} className="text-3xl mb-1" />
-            <div className="text-3xl font-bold">200</div>
-            <div>Peserta Keluar</div>
-          </div>
-          <div className='flex-1 p-3 bg-white shadow-md rounded-lg text-center'>
-            <FontAwesomeIcon icon={faUserCheck} className="text-3xl mb-1" />
-            <div className="text-3xl font-bold">100</div>
-            <div>Jumlah Peserta Aktif</div>
-          </div>
-          <div className='flex-1 p-3 bg-white shadow-md rounded-lg text-center'>
-            <FontAwesomeIcon icon={faUsers} className="text-3xl mb-1" />
-            <div className="text-3xl font-bold">100</div>
-            <div>Jumlah Kelompok</div>
-          </div>
-        </div>        
-        <div className="flex gap-3">
-            <div className="bg-white flex-[3] shadow-md rounded-lg p-4">
-                {/* Main content goes here */}
-            </div>
-            <div className="bg-white flex-[1] shadow-md rounded-lg p-4">
-                <h2 className="text-center text-lg font-bold mb-2">Recent Actions</h2>
-                <div className="h-64 overflow-y-auto">
-                    {actions.map((action, index) => (
-                        <div key={index} className="bg-white p-2 my-1 rounded shadow">
-                            {action}
-                        </div>
-                    ))}
-                </div>
-            </div>
+          <input 
+            type="text" 
+            placeholder="Cari Nama Kelompok" 
+            className="p-2 border rounded-full h-12" 
+          />
         </div>
+        <div className="overflow-x-auto">
+          <table className="min-w-full bg-white rounded-lg">
+            <thead>
+              <tr className="w-full bg-gray-300">
+                <th className="p-2 border-r"><input type="checkbox" /></th>
+                <th className="p-2 border-r">{activeTab === 'Pendaftar' ? 'Nama Peserta' : 'Nama Ketua'}</th>
+                <th className="p-2 border-r">Mulai Magang</th>
+                <th className="p-2 border-r">Selesai Magang</th>
+                <th className="p-2">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              {(activeTab === 'Pendaftar' ? pendaftar : pesertaAktif).map((participant, index) => (
+                <tr key={index} className="text-center border-t">
+                  <td className="p-2 border-r"><input type="checkbox" /></td>
+                  <td className="p-2 border-r">{participant.name}</td>
+                  <td className="p-2 border-r">{participant.startDate}</td>
+                  <td className="p-2 border-r">{participant.endDate}</td>
+                  <td className="p-2 flex justify-around">
+                    {activeTab === 'Pendaftar' ? (
+                      <>
+                        <button
+                          className="p-1 bg-yellow-500 text-white rounded"
+                          onClick={() => {
+                            setSelectedParticipant(participant);
+                            setIsModalOpen(true);
+                          }}
+                        >
+                          Detail
+                        </button>
+                        <button className="p-1 bg-green-500 text-white rounded">Terima</button>
+                        <button className="p-1 bg-red-500 text-white rounded">Tolak</button>
+                      </>
+                    ) : (
+                      <>
+                        <button className="p-1 bg-yellow-500 text-white rounded">Detail</button>
+                        <button className="p-1 bg-red-500 text-white rounded">Hapus</button>
+                      </>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        {isModalOpen && (
+          <PopUp
+            participant={selectedParticipant}
+            onClose={() => setIsModalOpen(false)}
+          />
+        )}
       </div>
     </div>
   );
-}
+};
 
 export default KelolaKelompok;
