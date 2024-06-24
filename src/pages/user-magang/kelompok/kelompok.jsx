@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useMemo } from "react";
+import { TambahAnggota } from "../../../components/components";
 
 const data = [
   {
@@ -42,6 +43,14 @@ const data = [
 ];
 
 const Kelompok = () => {
+
+  //PopUp Form Tambah Anggota
+  const [showPopup, setShowPopup] = useState(false);
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
+
   const columns = useMemo(
     () => [
       {
@@ -108,11 +117,12 @@ const Kelompok = () => {
               <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
                 <button
                   className="bg-red-500 text-white active:bg-red-800 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                  type="button"
+                  type="button" onClick={togglePopup}
                 >
                   Tambah Anggota
                 </button>
               </div>
+                <TambahAnggota show={showPopup} onClose={togglePopup} />
             </div>
           </div>
 
