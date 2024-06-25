@@ -11,11 +11,13 @@ const Path = () => {
 
           <Route element={<WithNavbar/>}>
             <Route path='/Magang' element={<UserMagang/>}/>
-            <Route path='/Monitoring' element={<UserAdmin/>}/>
+            <Route path='/Monitoring' element={<UserAdmin/>}/>  
+            <Route path='/' element={<Dashboard/>}/>
+            <Route path='/sign' element={<Dashboard/>}/>
           </Route>
 
           <Route element={<WithoutNavbar/>}>
-            <Route path='/' element={<Dashboard/>}/>
+           
           </Route>
 
         </Routes>

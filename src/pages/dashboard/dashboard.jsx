@@ -9,15 +9,10 @@ const Dashobard = () => {
   return (
     <div>
       <header>
-        <div class="container mx-auto flex justify-center items-center">
-          <img src={logo} alt='gambar head' />
-        </div>
-
         {/* gasris  */}
         <div className='bg-gradient-to-r from-pink-500 to-rose-500 h-10 flex justify-end items-center'>
           <button className='text-white bg-blue-800 rounded-xl py-2 px-6 mr-4'>Masuk</button>
         </div>
-
       </header>
       {/* main */}
       <main className=" container mx-auto max-w-5xl grid grid-cols-2 pt-20 " >
@@ -172,9 +167,6 @@ const Dashobard = () => {
           <span className='flex-grow text-center'>Mengapa saya tidak mendapatkan email verifikasi?</span>
           <img className='w-6 h-6 ml-auto' src={logo2} alt='read more' />
         </button>
-      </div>
-      <div>
-            <Footer />
       </div>
     </div>
   )
